@@ -4,22 +4,21 @@
     2. The ability to communicate with the parent
        through props and events.
 -->
-
 <template>
   <div class="contact-card">
     <img
       width="60px"
       height="60px"
-      src="https://www.w3schools.com/howto/img_avatar2.png"
+      :src="contact.avatar"
       alt="Contact Name and Number"
       class="contact-avatar"
     />
     <div class="contact-details">
-      <h1 class="contact-name">Jane Doe</h1>
-      <p class="contact-email">jane.doe@enterprise.com</p>
+      <h1 class="contact-name">{{ contact.name }}</h1>
+      <p class="contact-email">{{ contact.email }}</p>
     </div>
     <div class="contact-call">
-      <a href="tel:+264814774491" class="call-link">
+      <a :href="`tel:${contact.number}`" class="call-link">
         <img
           width="25px"
           height="25px"
@@ -32,7 +31,34 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "app-contact-card",
+  props: {
+    contact: {
+      id: {
+        type: Number,
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      contact: {
+        type: String,
+        required: true
+      },
+      email: {
+        type: String,
+        required: true
+      }
+    }
+  },
+  created() {
+    if (!this.contact.avatar) {
+      this.contact.avatar = "https://www.w3schools.com/howto/img_avatar2.png";
+    }
+  }
+};
 </script>
 
 <style scoped>

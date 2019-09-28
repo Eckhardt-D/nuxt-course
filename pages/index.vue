@@ -3,20 +3,8 @@
     1. A route in the URL bar
     2. A fully generated .html page
 -->
-
 <template>
   <section id="home-page">
-    <div class="home-header">
-      <img
-        width="80px"
-        src="~/assets/address-card-solid.svg"
-        alt="My Contact Keeper Icon"
-      />
-      <h1>My Contact Keeper</h1>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      </p>
-    </div>
     <div class="home-contacts">
       <div class="container">
         <div class="row py-3">
@@ -73,14 +61,6 @@ export default {
 </script>
 
 <style>
-.home-header {
-  padding: 2em;
-  background: #f4f4f4;
-  text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
 .home-contacts {
   max-width: 800px;
   margin: 0 auto;
