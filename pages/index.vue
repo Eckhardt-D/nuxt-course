@@ -20,105 +20,12 @@
     <div class="home-contacts">
       <div class="container">
         <div class="row py-3">
-          <div class="col-md-6 mx-auto my-3">
-            <div class="contact-card">
-              <img
-                width="60px"
-                height="60px"
-                src="https://www.w3schools.com/howto/img_avatar2.png"
-                alt="Contact Name and Number"
-                class="contact-avatar"
-              />
-              <div class="contact-details">
-                <h1 class="contact-name">Jane Doe</h1>
-                <p class="contact-email">jane.doe@enterprise.com</p>
-              </div>
-              <div class="contact-call">
-                <a href="tel:+264814774491" class="call-link">
-                  <img
-                    width="25px"
-                    height="25px"
-                    src="~/assets/phone-solid.svg"
-                    alt="Telephone Icon"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mx-auto my-3">
-            <div class="contact-card">
-              <img
-                width="60px"
-                height="60px"
-                src="https://www.w3schools.com/howto/img_avatar2.png"
-                alt="Contact Name and Number"
-                class="contact-avatar"
-              />
-              <div class="contact-details">
-                <h1 class="contact-name">Jane Doe</h1>
-                <p class="contact-email">jane.doe@enterprise.com</p>
-              </div>
-              <div class="contact-call">
-                <a href="tel:+264814774491" class="call-link">
-                  <img
-                    width="25px"
-                    height="25px"
-                    src="~/assets/phone-solid.svg"
-                    alt="Telephone Icon"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mx-auto my-3">
-            <div class="contact-card">
-              <img
-                width="60px"
-                height="60px"
-                src="https://www.w3schools.com/howto/img_avatar2.png"
-                alt="Contact Name and Number"
-                class="contact-avatar"
-              />
-              <div class="contact-details">
-                <h1 class="contact-name">Jane Doe</h1>
-                <p class="contact-email">jane.doe@enterprise.com</p>
-              </div>
-              <div class="contact-call">
-                <a href="tel:+264814774491" class="call-link">
-                  <img
-                    width="25px"
-                    height="25px"
-                    src="~/assets/phone-solid.svg"
-                    alt="Telephone Icon"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mx-auto my-3">
-            <div class="contact-card">
-              <img
-                width="60px"
-                height="60px"
-                src="https://www.w3schools.com/howto/img_avatar2.png"
-                alt="Contact Name and Number"
-                class="contact-avatar"
-              />
-              <div class="contact-details">
-                <h1 class="contact-name">Jane Doe</h1>
-                <p class="contact-email">jane.doe@enterprise.com</p>
-              </div>
-              <div class="contact-call">
-                <a href="tel:+264814774491" class="call-link">
-                  <img
-                    width="25px"
-                    height="25px"
-                    src="~/assets/phone-solid.svg"
-                    alt="Telephone Icon"
-                  />
-                </a>
-              </div>
-            </div>
+          <div
+            v-for="contact in contacts"
+            class="col-md-6 mx-auto my-3"
+            :key="contact.id"
+          >
+            <app-contact-card :contact="contact" />
           </div>
         </div>
       </div>
@@ -127,7 +34,42 @@
 </template>
 
 <script>
-export default {};
+export default {
+  /* https://nuxtjs.org/api/context */
+  asyncData() {
+    return {
+      contacts: [
+        {
+          id: 1,
+          name: "Jane Doe",
+          number: "+221678432222",
+          email: "jane.doe@enterprise.com"
+        },
+        {
+          id: 2,
+          name: "John Doe",
+          number: "+221673432222",
+          email: "john.doe@enterprise.com"
+        },
+        {
+          id: 3,
+          name: "Peter Doe",
+          number: "+221678432112",
+          email: "peter.doe@enterprise.com"
+        },
+        {
+          id: 4,
+          name: "Sarah Doe",
+          number: "+221678432245",
+          email: "sarah.doe@enterprise.com"
+        }
+      ]
+    };
+  },
+  components: {
+    AppContactCard: () => import("~/components/AppContactCard")
+  }
+};
 </script>
 
 <style>
@@ -142,33 +84,5 @@ export default {};
 .home-contacts {
   max-width: 800px;
   margin: 0 auto;
-}
-
-.contact-card {
-  padding: 2em 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  max-width: 425px;
-  margin: 0 auto;
-}
-
-.contact-avatar {
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.contact-call,
-.contact-details > * {
-  text-align: center;
-}
-
-@media screen and (max-width: 500px) {
-  .contact-card {
-    max-width: calc(90% - 1em);
-  }
 }
 </style>
