@@ -13,47 +13,9 @@
 <script>
 export default {
   layout: "no-header",
-  asyncData({ params, router }) {
-    if (!params.id) return router.push("/");
-
-    let contact = null;
-    const contacts = [
-      {
-        id: 1,
-        name: "Jane Doe",
-        number: "+221678432222",
-        email: "jane.doe@enterprise.com"
-      },
-      {
-        id: 2,
-        name: "John Doe",
-        number: "+221673432222",
-        email: "john.doe@enterprise.com"
-      },
-      {
-        id: 3,
-        name: "Peter Doe",
-        number: "+221678432112",
-        email: "peter.doe@enterprise.com"
-      },
-      {
-        id: 4,
-        name: "Sarah Doe",
-        number: "+221678432245",
-        email: "sarah.doe@enterprise.com"
-      }
-    ];
-
-    contacts.forEach(c => {
-      if (c.id == params.id) {
-        contact = c;
-      }
-    });
-
-    if (!contact) {
-      return router.push("/");
-    }
-
+  asyncData({ params, router, store }) {
+    let contact = store.state.contacts.filter(c => c._id == params.id)[0];
+    if (!contact) return router.push("/");
     return { contact };
   },
   components: {

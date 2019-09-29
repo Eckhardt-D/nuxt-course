@@ -6,14 +6,14 @@
 -->
 <template>
   <div
-    @click="$router.push(`/single-contact/${contact.id}`)"
+    @click="$router.push(`/single-contact/${contact._id}`)"
     class="contact-card"
   >
     <img
       width="60px"
       height="60px"
-      :src="contact.avatar"
-      alt="Contact Name and Number"
+      :src="contact.avatar || fallbackAvatar"
+      alt="Contact Avatar"
       class="contact-avatar"
     />
     <div class="contact-details">
@@ -38,7 +38,7 @@ export default {
   name: "app-contact-card",
   props: {
     contact: {
-      id: {
+      _id: {
         type: Number,
         required: true
       },
@@ -56,13 +56,13 @@ export default {
       }
     }
   },
-  created() {
-    if (!this.contact.avatar) {
-      this.contact.avatar = "https://www.w3schools.com/howto/img_avatar2.png";
+  computed: {
+    fallbackAvatar() {
+      return "https://www.w3schools.com/howto/img_avatar2.png";
     }
   }
 };
-</script>e
+</script>
 
 <style scoped>
 /* 
