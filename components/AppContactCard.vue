@@ -5,7 +5,10 @@
        through props and events.
 -->
 <template>
-  <div class="contact-card">
+  <div
+    @click="$router.push(`/single-contact/${contact.id}`)"
+    class="contact-card"
+  >
     <img
       width="60px"
       height="60px"
@@ -59,7 +62,7 @@ export default {
     }
   }
 };
-</script>
+</script>e
 
 <style scoped>
 /* 

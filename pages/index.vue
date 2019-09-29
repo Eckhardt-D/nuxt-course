@@ -13,7 +13,11 @@
             class="col-md-6 mx-auto my-3"
             :key="contact.id"
           >
-            <app-contact-card :contact="contact" />
+            <app-contact-card
+              class="card--clickable"
+              @click="gotToCard(contat.id)"
+              :contact="contact"
+            />
           </div>
         </div>
       </div>
@@ -64,5 +68,14 @@ export default {
 .home-contacts {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.card--clickable {
+  transition: transform 150ms linear;
+}
+
+.card--clickable:hover {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 </style>
